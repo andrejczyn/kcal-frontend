@@ -1,24 +1,13 @@
+import axios from 'axios'
+
 export default class Services {
     productsService = new ProductsService()
 }
 
 export class ProductsService {
     products(): Promise<Products> {
-        return new Promise<Products>((resolve) => {
-            resolve({
-                products: [
-                    {
-                        id: "1",
-                        name: "Marchewka",
-                        calories: 122
-                    },
-                    {
-                        id: "2",
-                        name: "Pomidor",
-                        calories: 122
-                    }
-                ]
-            })
+        return axios.get<Products>("http://localhost:8080/products").then((response) => {
+            return response.data
         })
     }
 }

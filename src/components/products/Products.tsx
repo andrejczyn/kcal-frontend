@@ -52,8 +52,8 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Header</th>
-                            <th>Header</th>
+                            <th>Name</th>
+                            <th>Calories</th>
                         </tr>
                         </thead>
                         <tbody>
