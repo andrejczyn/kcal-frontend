@@ -14,6 +14,9 @@ export default class ProductTable extends PureComponent<ProductTableProps> {
                     <td>{it.id}</td>
                     <td>{it.name}</td>
                     <td>{it.calories}</td>
+                    <td>{it.protein}</td>
+                    <td>{it.fat}</td>
+                    <td>{it.carbohydrates}</td>
                 </tr>)
             }
         )
@@ -25,6 +28,9 @@ export default class ProductTable extends PureComponent<ProductTableProps> {
                     <th>#</th>
                     <th>Name</th>
                     <th>Calories</th>
+                    <th>Protein</th>
+                    <th>Fat</th>
+                    <th>Carbohydrates</th>
                 </tr>
                 </thead>
                 <tbody>
