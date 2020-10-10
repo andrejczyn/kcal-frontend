@@ -9,8 +9,8 @@ interface ProductTableProps {
 export default class ProductTable extends PureComponent<ProductTableProps> {
     render() {
         const products = this.props.products.map((it) => {
-                console.log(it);
-                return (<tr>
+
+                return (<tr key={it.id}>
                     <td>{it.id}</td>
                     <td>{it.name}</td>
                     <td>{it.calories}</td>

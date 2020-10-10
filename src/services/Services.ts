@@ -10,6 +10,12 @@ export class ProductsService {
             return response.data
         })
     }
+
+    save(product: Product) {
+        return axios.post<Product>("http://localhost:8080/products", product).then((response) => {
+            return response
+        })
+    }
 }
 
 export interface Products {
@@ -17,7 +23,10 @@ export interface Products {
 }
 
 export interface Product {
-    id: string,
+    id?: string,
     name: string,
-    calories: number
+    calories: number,
+    fat: number,
+    protein: number,
+    carbohydrates: number
 }

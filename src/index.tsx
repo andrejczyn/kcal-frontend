@@ -7,4 +7,4 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './style.css'
 import Services from "./services/Services";
 
-ReactDOM.render(<App services={new Services()}/>, document.body)
+ReactDOM.render(<App services={new Services()}/>, document.getElementById('application'))
