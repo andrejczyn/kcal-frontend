@@ -6,28 +6,41 @@ import {Product} from "../../../services/Services";
 
 interface EditProductModalProps {
     onClose: () => void
-    updateProduct: (product: Product) => void
+    updateProduct: (product: Product) => Promise<void>
 }
 
 interface EditProductModalState {
-
+    saving: boolean
 }
 
 
 export default class EditProductModal extends PureComponent<EditProductModalProps, EditProductModalState> {
-
     constructor(props: EditProductModalProps, context: any) {
         super(props, context);
+        this.state = {
+            saving: false
+        }
     }
 
 
     render() {
+
+        let saveText = (<><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"/>
+            Loading...</>)
+        if(!this.state.saving) {
+            saveText = (<>Create</>)
+        }
+
         return (
             <>
                 <div className="modal-backdrop fade show"/>
+
                 <Formik initialValues={{name: "", calories: 0, fat: 0, carbohydrates: 0, protein: 0}}
                         onSubmit={(product: Product, {setSubmitting}: FormikHelpers<Product>) => {
-                            this.props.updateProduct(product)
+                            this.setState({saving: true})
+                            this.props.updateProduct(product).then(() => {
+                                this.setState({saving: false})
+                            })
                         }} onReset={() => {
                 }}>
                     <Form>
@@ -36,7 +49,7 @@ export default class EditProductModal extends PureComponent<EditProductModalProp
                                 <div className="modal-content">
                                     <div className="modal-header">
                                         <h5 className="modal-title">Create product</h5>
-                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.onClose}>
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -62,16 +75,18 @@ export default class EditProductModal extends PureComponent<EditProductModalProp
                                             <Field className="form-control" name="carbohydrates"/>
                                         </div>
                                     </div>
+
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-secondary" onClick={this.props.onClose}
                                                 data-dismiss="modal">Cancel
                                         </button>
-                                        <button type="submit" className="btn btn-primary">Create</button>
+                                        <button type="submit" className="btn btn-primary" disabled={this.state.saving}>
+                                            {saveText}
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit">Submit</button>
                     </Form>
                 </Formik>
             </>)

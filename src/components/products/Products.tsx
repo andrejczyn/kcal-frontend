@@ -60,14 +60,14 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
     }
 
     updateProduct = (product: Product) => {
-        this.props.service.save(product).then(() => this.loadProducts())
+        return this.props.service.save(product).then(() => this.loadProducts())
             .then(() => {
                 this.setState({dialog: null})
             });
     }
 
     loadProducts = () => {
-        this.props.service.products().then(
+        return this.props.service.products().then(
             (products) => {
                 this.setState({
                     products: products.products,
