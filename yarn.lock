@@ -27,10 +27,20 @@
     lodash "^4.17.15"
     lodash-es "^4.17.15"
 
+"@types/bluebird@^3.5.32":
+  version "3.5.32"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.32.tgz#381e7b59e39f010d20bbf7e044e48f5caf1ab620"
+  integrity sha512-dIOxFfI0C+jz89g6lQ+TqhGgPQ0MxSnh/E4xuC0blhFtyW269+mPG5QeLgbdwst/LvdP8o1y0o/Gz5EHXLec/g==
+
 "@types/classnames@^2.2.10":
   version "2.2.10"
   resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.10.tgz#cc658ca319b6355399efc1f5b9e818f1a24bf999"
   integrity sha512-1UzDldn9GfYYEsWWnn/P4wkTlkZDH7lDb0wBMGbtIQc9zXEQq7FlKBdZUn6OBqD8sKZZ2RQO2mAjGpXiDGoRmQ==
+
+"@types/core-js@0.9.36":
+  version "0.9.36"
+  resolved "https://registry.yarnpkg.com/@types/core-js/-/core-js-0.9.36.tgz#d721e7cc0007d10ce66ad263ebf478a4071c53f4"
+  integrity sha1-1yHnzAAH0QzmatJj6/R4pAccU/Q=
 
 "@types/invariant@^2.2.33":
   version "2.2.34"

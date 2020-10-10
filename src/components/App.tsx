@@ -1,8 +1,14 @@
-import {Component} from 'react';
+import {Component, PureComponent} from 'react';
 import * as React from "react";
 import {Form} from "./Form";
+import Products from "./products/Products";
+import Services from "../services/Services";
 
-export default class App extends Component {
+interface AppProps {
+    services: Services
+}
+
+export default class App extends PureComponent<AppProps> {
     render() {
         return (
             <>
@@ -12,7 +18,7 @@ export default class App extends Component {
                 </div>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                        <nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                             <div className="sidebar-sticky pt-3">
                                 <ul className="nav flex-column">
                                     <li className="nav-item">
@@ -36,7 +42,10 @@ export default class App extends Component {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </nav>
+                        <main className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                            <Products service={this.props.services.productsService}/>
+                        </main>
                     </div>
                 </div>
             </>)
