@@ -13,7 +13,7 @@ export class ProductsService {
 
     save(product: Product) {
         return axios.post<Product>("http://localhost:8080/products", product).then((response) => {
-            return response
+            return response.data
         })
     }
 }

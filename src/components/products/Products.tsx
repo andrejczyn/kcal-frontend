@@ -22,22 +22,16 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
             loading: true
         }
 
-        props.service.products().then(
-            (products) => {
-                this.setState({
-                    products: products.products,
-                    loading: false
-                })
-            }
-        )
+        this.loadProducts()
     }
 
     render() {
         let dialog = null
         if (this.state.dialog == "edit") {
-            dialog = <EditProductModal onClose={() => {
-                this.setState({dialog: null})
-            }} updateProduct={this.updateProduct}
+            dialog = <EditProductModal
+                onClose={() => { this.setState({dialog: null}) }}
+                updateProduct={this.updateProduct}
+                service={this.props.service}
             />
         }
 
@@ -60,15 +54,16 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
     }
 
     updateProduct = (product: Product) => {
-        return this.props.service.save(product).then(() => this.loadProducts())
-            .then(() => {
-                this.setState({dialog: null})
-            });
+        this.setState({
+            dialog: null
+        })
+        this.loadProducts()
     }
 
     loadProducts = () => {
-        return this.props.service.products().then(
+        this.props.service.products().then(
             (products) => {
+                console.log(products);
                 this.setState({
                     products: products.products,
                     loading: false

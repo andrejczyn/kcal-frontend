@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/grzegorz.andrejczyn/.nvm/versions/node/v14.8.0/bin/node /usr/local/Cellar/yarn/1.22.5/libexec/bin/yarn.js add @types/formik
+  /Users/grzegorz.andrejczyn/.nvm/versions/node/v14.8.0/bin/node /usr/local/Cellar/yarn/1.22.5/libexec/bin/yarn.js add @types/formik git status
 
 PATH: 
   /Users/grzegorz.andrejczyn/.nvm/versions/node/v14.8.0/bin:/Users/grzegorz.andrejczyn/.sdkman/candidates/sbt/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
