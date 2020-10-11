@@ -30,7 +30,7 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
 
         return (
             <>
-                {this.state.dialog == "edit" && (
+                {(this.state.dialog == "edit") && (
                     <EditProductModal
                         onClose={() => {
                             this.setState({dialog: null})
