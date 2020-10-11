@@ -3,6 +3,7 @@ import {ReactElement} from "react";
 import {Basket3, Cart, CupStraw} from "react-bootstrap-icons";
 import {MenuItem} from "./menu/MenuItem";
 import * as H from "history";
+import {Menu} from "./menu/Many";
 
 interface PageProps {
     children: ReactElement,
@@ -20,11 +21,7 @@ export function Page(props: any) {
                 <div className="row">
                     <nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                         <div className="sidebar-sticky pt-3">
-                            <ul className="nav flex-column">
-                                <MenuItem location={props.location} link="/" text="Meals"
-                                          active={true}><CupStraw/></MenuItem>
-                                <MenuItem location={props.location} link="/products" text="Products"><Cart/></MenuItem>
-                            </ul>
+                            <Menu location={props.location} />
                         </div>
                     </nav>
                     <main className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
