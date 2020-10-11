@@ -20,7 +20,7 @@ export default class App extends PureComponent<AppProps> {
                             <Page><Products service={this.props.services.productsService}/></Page>
                         </Route>
                         <Route exact path="/" component={Products}>
-                            <Page><Diary/></Page>
+                            <Page><Diary productsService={this.props.services.productsService}/></Page>
                         </Route>
                     </Switch>
 

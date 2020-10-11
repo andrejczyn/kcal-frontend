@@ -4,10 +4,14 @@ export default class Services {
     productsService = new ProductsService()
 }
 
-export class ProductsService {
-    products(): Promise<Products> {
+export interface ProductQuery {
+    q?: string
+}
 
-        return axios.get<Products>("/api/products", {headers: {"accept": "application/json"}}).then((response) => {
+export class ProductsService {
+    products(query: ProductQuery = {}): Promise<Products> {
+
+        return axios.get<Products>("/api/products", {params: query, headers: {"accept": "application/json"}}).then((response) => {
             return response.data
         })
     }
