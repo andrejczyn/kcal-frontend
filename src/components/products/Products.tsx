@@ -26,18 +26,19 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
     }
 
     render() {
-        let dialog = null
-        if (this.state.dialog == "edit") {
-            dialog = <EditProductModal
-                onClose={() => { this.setState({dialog: null}) }}
-                updateProduct={this.updateProduct}
-                service={this.props.service}
-            />
-        }
+
 
         return (
             <>
-                {dialog}
+                {this.state.dialog == "edit" && (
+                    <EditProductModal
+                        onClose={() => {
+                            this.setState({dialog: null})
+                        }}
+                        updateProduct={this.updateProduct}
+                        service={this.props.service}
+                    />
+                )}
                 <div
                     className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 className="h2">Products</h1>

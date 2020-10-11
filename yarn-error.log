@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/grzegorz.andrejczyn/.nvm/versions/node/v14.8.0/bin/node /usr/local/Cellar/yarn/1.22.5/libexec/bin/yarn.js add @types/formik git status
+  /Users/grzegorz.andrejczyn/.nvm/versions/node/v14.8.0/bin/node /usr/local/Cellar/yarn/1.22.5/libexec/bin/yarn.js add @types/react-hook-form
 
 PATH: 
   /Users/grzegorz.andrejczyn/.nvm/versions/node/v14.8.0/bin:/Users/grzegorz.andrejczyn/.sdkman/candidates/sbt/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fformik: Not found
+  Error: https://registry.yarnpkg.com/@types%2freact-hook-form: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.5/libexec/lib/cli.js:66988:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.22.5/libexec/lib/cli.js:140749:22)
       at Request.emit (events.js:314:20)
@@ -45,11 +45,11 @@ npm manifest:
       "@types/react-dom": "^16.9.8",
       "axios": "^0.20.0",
       "bootstrap": "^4.5.2",
-      "formik": "^2.2.0",
       "lodash": "^4.17.20",
       "react": "^16.13.1",
       "react-bootstrap": "^1.3.0",
       "react-dom": "^16.13.1",
+      "react-hook-form": "^6.9.2",
       "typescript": "^4.0.3"
     },
     "devDependencies": {
@@ -2386,6 +2386,11 @@ Lockfile:
     version "2.0.4"
     resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
     integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+  
+  react-hook-form@^6.9.2:
+    version "6.9.2"
+    resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.9.2.tgz#9512cd424e62235fda13c8fc1821f88c352e3d23"
+    integrity sha512-vCPEbHVCRvsoqrQARgQ7a3VrXzqbFOO53gHFRdQzLzHMT9kxum3wfcSi8A1b49KPRsomvsqexH4tBUJMneEu+Q==
   
   react-is@^16.3.2, react-is@^16.7.0, react-is@^16.8.1:
     version "16.13.1"

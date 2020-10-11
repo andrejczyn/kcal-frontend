@@ -1,8 +1,9 @@
 import * as React from "react";
 import {PureComponent} from "react";
+import {useForm, UseFormMethods} from "react-hook-form";
 import "./style.css"
-import {ErrorMessage, Field, Form, Formik, FormikHelpers, useFormik} from "formik";
 import {Product, ProductsService} from "../../../services/Services";
+import EditProductForm from "./EditProductForm";
 
 interface EditProductModalProps {
     onClose: () => void
@@ -16,6 +17,7 @@ interface EditProductModalState {
 
 
 export default class EditProductModal extends PureComponent<EditProductModalProps, EditProductModalState> {
+    form: UseFormMethods<Product>
     constructor(props: EditProductModalProps, context: any) {
         super(props, context);
         this.state = {
@@ -25,85 +27,27 @@ export default class EditProductModal extends PureComponent<EditProductModalProp
 
 
     render() {
-        let saveText = (<><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"/>
-            Loading...</>)
-        if (!this.state.saving) {
-            saveText = (<>Create</>)
-        }
-
         return (
             <>
                 <div className="modal-backdrop fade show"/>
-
-                <Formik initialValues={{name: "", calories: 0, fat: 0, carbohydrates: 0, protein: 0}}
-                        onSubmit={(product: Product, {setSubmitting}: FormikHelpers<Product>) => {
-                            this.save(product)
-                        }} onReset={() => {
-                }} validate={this.validateForm}>
-                    <Form>
-                        <div className="modal fade show" id="edit-product">
-                            <div className="modal-dialog">
-                                <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h5 className="modal-title">Create product</h5>
-                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close"
-                                                onClick={this.props.onClose}>
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div className="modal-body">
-                                        <div className="form-group">
-                                            <label htmlFor="name">Name</label>
-                                            <Field className="form-control" name="name"/>
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="exampleInputPassword1">Calories</label>
-                                            <Field className="form-control" name="calories"/>
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="protein">Protein</label>
-                                            <Field className="form-control" name="protein"/>
-                                            <ErrorMessage name="protein"/>
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="fat">Fat</label>
-                                            <Field className="form-control" name="fat"/>
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="exampleInputPassword1">Carbohydrates</label>
-                                            <Field className="form-control" name="carbohydrates"/>
-                                        </div>
-                                    </div>
-
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" onClick={this.props.onClose}
-                                                data-dismiss="modal">Cancel
-                                        </button>
-                                        <button type="submit" className="btn btn-primary" disabled={this.state.saving}>
-                                            {saveText}
-                                        </button>
-                                    </div>
+                    <div className="modal fade show" id="edit-product">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title">Create product</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close"
+                                            onClick={this.props.onClose}>
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
+                                <EditProductForm {...this.props} />
                             </div>
                         </div>
-                    </Form>
-                </Formik>
+                    </div>
+
             </>)
     }
 
-    save = (data: Product) => {
-        this.setState({
-            saving: true
-        })
-
-        this.props.service.save(data)
-            .then((product) => {
-                this.setState({
-                    saving: false
-                })
-                this.props.updateProduct(product)
-            })
-    }
 
     validateForm = (data: Product) => {
         let errors = {}
