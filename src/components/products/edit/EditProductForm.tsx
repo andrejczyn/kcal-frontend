@@ -9,16 +9,18 @@ import * as classNames from "classnames";
 interface EditProductFormProps {
     onClose: () => void
     updateProduct: (product: Product) => void
-    service: ProductsService
+    service: ProductsService,
+    product?: Product
 }
 
 export default function EditProductForm(props: EditProductFormProps) {
-    const {register, handleSubmit, errors} = useForm<Product>()
+    const {register, handleSubmit, errors} = useForm<Product>({
+        defaultValues: props.product
+    })
     const [saving, setSaving] = useState(false)
     const save = (data: Product) => {
         setSaving(true)
-
-        props.service.save(data)
+        props.service.save({...props.product, ...data})
             .then((product) => {
                 setSaving(false)
                 props.updateProduct(product)
@@ -37,28 +39,41 @@ export default function EditProductForm(props: EditProductFormProps) {
             <div className="modal-body">
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
-                    <input type="text" className={classNames(["form-control", errors.name && "is-invalid"])} name="name" ref={register({required: true})}/>
+                    <input type="text" className={classNames(["form-control", errors.name && "is-invalid"])} name="name"
+                           ref={register({required: true})}/>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Calories</label>
-                    <input type="rext" className={classNames(["form-control", errors.calories && "is-invalid"])} name="calories"
-                           ref={register({required: true, validate: validateNumeric})}/>
-
+                <div className="form-group ">
+                    <label htmlFor="calories" className="sr-only">Calories</label>
+                    <div className="input-group">
+                        <div className="input-group-prepend">
+                            <div className="input-group-text">KCal</div>
+                        </div>
+                        <input
+                            type="text" className={classNames(["form-control", errors.calories && "is-invalid"])}
+                            name="calories"
+                            ref={register({required: true, validate: validateNumeric})}/>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="protein">Protein</label>
-                    <input type="text" className={classNames(["form-control", errors.protein && "is-invalid"])} name="protein"
-                           ref={register({required: true, validate: validateNumeric})}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="fat">Fat</label>
-                    <input type="text" className={classNames(["form-control", errors.fat && "is-invalid"])} name="fat"
-                           ref={register({required: true, validate: validateNumeric})}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="carbohydrates">Carbohydrates</label>
-                    <input type="text" className={classNames(["form-control", errors.carbohydrates && "is-invalid"])} name="carbohydrates"
-                           ref={register({required: true, validate: validateNumeric})}/>
+                <div className="form-row">
+                    <div className="form-group col-md-4">
+                        <label htmlFor="protein">Protein</label>
+                        <input type="text" className={classNames(["form-control", errors.protein && "is-invalid"])}
+                               name="protein"
+                               ref={register({required: true, validate: validateNumeric})}/>
+                    </div>
+                    <div className="form-group col-md-4">
+                        <label htmlFor="fat">Fat</label>
+                        <input type="text" className={classNames(["form-control", errors.fat && "is-invalid"])}
+                               name="fat"
+                               ref={register({required: true, validate: validateNumeric})}/>
+                    </div>
+                    <div className="form-group col-md-4">
+                        <label htmlFor="carbohydrates">Carbohydrates</label>
+                        <input type="text"
+                               className={classNames(["form-control", errors.carbohydrates && "is-invalid"])}
+                               name="carbohydrates"
+                               ref={register({required: true, validate: validateNumeric})}/>
+                    </div>
                 </div>
             </div>
 

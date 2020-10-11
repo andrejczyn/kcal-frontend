@@ -9,6 +9,7 @@ interface EditProductModalProps {
     onClose: () => void
     updateProduct: (product: Product) => void
     service: ProductsService
+    product: Product | null
 }
 
 interface EditProductModalState {

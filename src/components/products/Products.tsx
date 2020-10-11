@@ -11,7 +11,8 @@ interface ProductsProps {
 interface ProductsState {
     products: Array<Product>
     loading: boolean,
-    dialog?: 'edit'
+    dialog?: 'edit',
+    product?: Product
 }
 
 export default class Products extends PureComponent<ProductsProps, ProductsState> {
@@ -26,8 +27,6 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
     }
 
     render() {
-
-
         return (
             <>
                 {(this.state.dialog == "edit") && (
@@ -37,6 +36,7 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
                         }}
                         updateProduct={this.updateProduct}
                         service={this.props.service}
+                        product={this.state.product}
                     />
                 )}
                 <div
@@ -49,7 +49,7 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
                         </div>
                     </div>
                 </div>
-                <ProductTable products={this.state.products}/>
+                <ProductTable products={this.state.products} edit={(p) => {this.setState({product: p, dialog: 'edit'})}}/>
             </>
         );
     }
@@ -74,7 +74,6 @@ export default class Products extends PureComponent<ProductsProps, ProductsState
     }
 
     edit = (e: any) => {
-        console.log("click edit");
         this.setState({
             dialog: 'edit'
         })
