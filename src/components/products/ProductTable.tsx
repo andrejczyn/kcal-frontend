@@ -2,6 +2,7 @@ import {PureComponent} from "react";
 import * as React from "react";
 import {Product} from "../../services/Services";
 import "./products.css"
+import { PencilSquare } from 'react-bootstrap-icons';
 interface ProductTableProps {
     products: Product[],
     edit: (product: Product) => void
@@ -19,7 +20,10 @@ export default class ProductTable extends PureComponent<ProductTableProps> {
                         <span className="badge badge-warning badge-nutrients">Carbs: <span className="badge badge-light">{it.carbohydrates}</span></span>
                         <span className="badge badge-danger badge-nutrients">Fat: <span className="badge badge-light">{it.fat}</span></span>
                     </td>
-                    <td><a href="#" role="button" onClick={(event) => {this.props.edit(it)}}>Edit</a></td>
+                    <td>
+                        <a href="#" role="button" onClick={(event) => {this.props.edit(it)}}><PencilSquare /></a>
+
+                    </td>
                 </tr>)
             }
         )
