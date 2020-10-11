@@ -1,7 +1,7 @@
 import * as React from "react";
 import {PureComponent} from "react";
 import "./style.css"
-import {Field, Form, Formik, FormikHelpers, useFormik} from "formik";
+import {ErrorMessage, Field, Form, Formik, FormikHelpers, useFormik} from "formik";
 import {Product} from "../../../services/Services";
 
 interface EditProductModalProps {
@@ -27,7 +27,7 @@ export default class EditProductModal extends PureComponent<EditProductModalProp
 
         let saveText = (<><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"/>
             Loading...</>)
-        if(!this.state.saving) {
+        if (!this.state.saving) {
             saveText = (<>Create</>)
         }
 
@@ -42,14 +42,15 @@ export default class EditProductModal extends PureComponent<EditProductModalProp
                                 this.setState({saving: false})
                             })
                         }} onReset={() => {
-                }}>
+                }} validate={this.validateForm}>
                     <Form>
                         <div className="modal fade show" id="edit-product">
                             <div className="modal-dialog">
                                 <div className="modal-content">
                                     <div className="modal-header">
                                         <h5 className="modal-title">Create product</h5>
-                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.onClose}>
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close"
+                                                onClick={this.props.onClose}>
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -65,6 +66,7 @@ export default class EditProductModal extends PureComponent<EditProductModalProp
                                         <div className="form-group">
                                             <label htmlFor="protein">Protein</label>
                                             <Field className="form-control" name="protein"/>
+                                            <ErrorMessage name="protein" />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="fat">Fat</label>
@@ -90,5 +92,14 @@ export default class EditProductModal extends PureComponent<EditProductModalProp
                     </Form>
                 </Formik>
             </>)
+    }
+
+    validateForm = (data: Product) => {
+        let errors = {}
+        if(!Number.isInteger(data.protein)) {
+            errors = {...errors, protein: "Nieprawidłowy format"}
+        }
+
+        return errors;
     }
 }
