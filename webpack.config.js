@@ -31,4 +31,15 @@ module.exports = {
         filename: "bundle.js",
         path: path.resolve(__dirname, 'dist'),
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        port: 8081,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8080/',
+                pathRewrite: {'^/api' : ''}
+            }
+        },
+        clientLogLevel: 'info'
+    }
 }

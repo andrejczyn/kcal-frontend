@@ -6,13 +6,20 @@ export default class Services {
 
 export class ProductsService {
     products(): Promise<Products> {
-        return axios.get<Products>("http://localhost:8080/products").then((response) => {
+
+        return axios.get<Products>("/api/products", {headers: {"accept": "application/json"}}).then((response) => {
             return response.data
         })
     }
 
     save(product: Product) {
-        return axios.post<Product>("http://localhost:8080/products", product).then((response) => {
+        if (product.id) {
+            return axios.put<Product>(`/api/products/${product.id}`, product).then((response) => {
+                return response.data
+            })
+        }
+
+        return axios.post<Product>("/api/products", product).then((response) => {
             return response.data
         })
     }

@@ -2,7 +2,6 @@ import {useForm} from "react-hook-form";
 import {Product, ProductsService} from "../../../services/Services";
 import * as React from "react";
 import {useState} from "react";
-import validate = WebAssembly.validate;
 import {validateNumeric} from "../../../validators/validators";
 import * as classNames from "classnames";
 
