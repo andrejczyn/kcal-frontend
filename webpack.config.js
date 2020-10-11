@@ -40,6 +40,7 @@ module.exports = {
                 pathRewrite: {'^/api' : ''}
             }
         },
-        clientLogLevel: 'info'
+        clientLogLevel: 'info',
+        historyApiFallback: true
     }
 }
