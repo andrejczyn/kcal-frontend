@@ -2,6 +2,7 @@ import * as React from "react";
 import * as lunch from './lunch.jpg'
 import * as breakfast from './breakfast.jpg'
 import * as dinner from './dinner.jpg'
+import {AddToDiaryForm} from "./AddToDiaryForm";
 
 export function Diary() {
     return (<>
@@ -15,8 +16,10 @@ export function Diary() {
                     <img className="card-img-top" src={breakfast.default}/>
                     <div className="card-body">
                         <h5 className="card-title">Breakfast</h5>
+                        <AddToDiaryForm />
                         <ul className="list-group">
                             <li className="list-group-item">Owsianka</li>
+                            <li className="list-group-item">Jogurt</li>
                         </ul>
                     </div>
                 </div>
@@ -26,8 +29,11 @@ export function Diary() {
                     <img className="card-img-top" src={lunch.default}/>
                     <div className="card-body">
                         <h5 className="card-title">Lunch</h5>
+                        <AddToDiaryForm />
                         <ul className="list-group">
-                            <li className="list-group-item">Owsianka</li>
+                            <li className="list-group-item">Schabowy</li>
+                            <li className="list-group-item">Ziemniaki</li>
+                            <li className="list-group-item">Buraczki</li>
                         </ul>
                     </div>
                 </div>
@@ -37,8 +43,10 @@ export function Diary() {
                     <img className="card-img-top" src={dinner.default}/>
                     <div className="card-body">
                         <h5 className="card-title">Dinner</h5>
+                        <AddToDiaryForm />
                         <ul className="list-group">
-                            <li className="list-group-item">Owsianka</li>
+                            <li className="list-group-item">Tost</li>
+                            <li className="list-group-item">Jogurt</li>
                         </ul>
                     </div>
                 </div>
