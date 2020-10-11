@@ -4,7 +4,7 @@ import Products from "./products/Products";
 import Services from "../services/Services";
 import {Page} from "./page/Page";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Meals} from "./meals/Meals";
+import {Diary} from "./diary/Diary";
 
 interface AppProps {
     services: Services
@@ -20,7 +20,7 @@ export default class App extends PureComponent<AppProps> {
                             <Page><Products service={this.props.services.productsService}/></Page>
                         </Route>
                         <Route exact path="/" component={Products}>
-                            <Page><Meals/></Page>
+                            <Page><Diary/></Page>
                         </Route>
                     </Switch>
 
